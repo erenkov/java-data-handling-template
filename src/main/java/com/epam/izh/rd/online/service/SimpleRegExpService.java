@@ -1,5 +1,11 @@
 package com.epam.izh.rd.online.service;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class SimpleRegExpService implements RegExpService {
 
     /**
@@ -11,7 +17,22 @@ public class SimpleRegExpService implements RegExpService {
      */
     @Override
     public String maskSensitiveData() {
-        return null;
+        String fileString;
+        StringBuffer result = new StringBuffer("");
+        Matcher matcher;
+
+        Pattern pattern = Pattern.compile("(\\d{4}) (\\d{4}) (\\d{4}) (\\d{4})");
+        try (BufferedReader bufReader = new BufferedReader(new FileReader("src/main/resources/sensitive_data.txt"))) {
+            fileString = bufReader.readLine();
+            matcher = pattern.matcher(fileString);
+            while (matcher.find()) {
+                matcher.appendReplacement(result, "$1 **** **** $4");
+            }
+            matcher.appendTail(result);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result.toString();
     }
 
     /**
@@ -22,6 +43,25 @@ public class SimpleRegExpService implements RegExpService {
      */
     @Override
     public String replacePlaceholders(double paymentAmount, double balance) {
-        return null;
+        String fileString;
+        StringBuffer result = new StringBuffer("");
+        Matcher matcher;
+
+        Pattern pattern = Pattern.compile("\\$\\{(.*?)\\}");
+        try (BufferedReader bufReader = new BufferedReader(new FileReader("src/main/resources/sensitive_data.txt"))) {
+            fileString = bufReader.readLine();
+            matcher = pattern.matcher(fileString);
+            if (matcher.find()) {
+                matcher.appendReplacement(result, String.format("%.0f",paymentAmount));
+            }
+            if (matcher.find()) {
+                matcher.appendReplacement(result, String.format("%.0f", balance));
+
+            }
+            matcher.appendTail(result);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result.toString();
     }
 }
