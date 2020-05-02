@@ -57,8 +57,8 @@ public class SimpleBigNumbersService implements BigNumbersService {
 
         /* 3) От 3 х до кв.корня из number проверяем все нечетн. числа */
         for (BigInteger i = BigInteger.valueOf(3);
-                        i.compareTo( (BigInteger) sqrtBigInt(number))<=0;
-                                 i = i.add(BigInteger.valueOf(2))) {
+             i.compareTo((BigInteger) sqrtBigInt(number)) <= 0;
+             i = i.add(BigInteger.valueOf(2))) {
 
             if (number.mod(i).compareTo(BigInteger.valueOf(0)) == 0) {
                 return false;
@@ -70,7 +70,7 @@ public class SimpleBigNumbersService implements BigNumbersService {
 
     public static BigInteger sqrtBigInt(BigInteger value) {
         BigInteger x = BigInteger.valueOf((long) Math.sqrt(value.longValue()));
-        return x.add( BigInteger.valueOf((long) (value.subtract(x.multiply(x)).longValue() / (x.longValue() * 2.0))));
+        return x.add(BigInteger.valueOf((long) (value.subtract(x.multiply(x)).longValue() / (x.longValue() * 2.0))));
     }
 
 }

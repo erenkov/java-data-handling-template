@@ -63,6 +63,6 @@ public class SimpleDateService implements DateService {
      */
     @Override
     public long getSecondsInYear(int year) {
-        return LocalDate.of(year,12,31).getDayOfYear() * 3600 * 24;
+        return LocalDate.of(year, 12, 31).getDayOfYear() * 3600 * 24;
     }
 }

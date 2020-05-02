@@ -40,7 +40,7 @@ public class SimpleFileRepository implements FileRepository {
     public long countDirsInDirectory(String path) {
         File file = new File("src/main/resources/" + path);
         long count = 0;
-        if(file.isDirectory()){
+        if (file.isDirectory()) {
             count++;
         }
         File[] files = file.listFiles();
@@ -78,12 +78,9 @@ public class SimpleFileRepository implements FileRepository {
      */
     @Override
     public boolean createFile(String path, String name) {
-//        File newPath = new File("target/classes"+path);
-        File newFile = new File(  "target/classes/"+path + "/" + name);
+        File newFile = new File("target/classes/" + path + "/" + name);
         try {
-//            if (newPath.mkdir()) {
-                boolean b = newFile.createNewFile();
-                return b;
+            return newFile.createNewFile();
 //            }
         } catch (IOException e) {
             e.printStackTrace();

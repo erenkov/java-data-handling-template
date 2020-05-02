@@ -52,7 +52,7 @@ public class SimpleRegExpService implements RegExpService {
             fileString = bufReader.readLine();
             matcher = pattern.matcher(fileString);
             if (matcher.find()) {
-                matcher.appendReplacement(result, String.format("%.0f",paymentAmount));
+                matcher.appendReplacement(result, String.format("%.0f", paymentAmount));
             }
             if (matcher.find()) {
                 matcher.appendReplacement(result, String.format("%.0f", balance));

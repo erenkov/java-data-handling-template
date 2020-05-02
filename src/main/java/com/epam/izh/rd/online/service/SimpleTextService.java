@@ -50,7 +50,7 @@ public class SimpleTextService implements TextService {
         return result.toString(); //TODO
     }
 
-     /**
+    /**
      * Реализовать функционал изменения регистра в вид лесенки.
      * Возвращаемый текст должен начинаться с прописного регистра.
      * <p>
